@@ -13,19 +13,32 @@ def process_input_file(commands, bank):
     for command in commands:
         command = command.split(" ")
         if command[0] == 'DEPOSIT':
-            pass #TODO
+            account_id = int(command[1])
+            delta = float(command[2])
+            bank.processDeposit(account_id, delta)
         elif command[0] == 'WITHDRAW':
-            pass  # TODO
+            account_id = int(command[1])
+            delta = float(command[2])
+            bank.processWithdraw(account_id, delta)
+
         elif command[0] == 'NEWCUST':
-            pass  # TODO
+            first_name = command[1]
+            last_name = command[2]
+            address = command[3:]
+            bank.createCustomer(first_name,last_name, address)
         elif command[0] == 'NEWACCOUNT':
-            pass  # TODO
+            account_id = int(command[1])
+            balance = float(command[2])
+            bank.createAccount(account_id)
+            bank.processDeposit(account_id, balance)
         elif command[0] == 'DISPACCOUNT':
-            pass  # TODO
+            accounterid = int(command[1])
+            bank.displayAccount(accounterid)
         elif command[0] == 'DISPCUST':
-            pass  # TODO
+            customerid = int(command[1])
+            bank.displayCustomerAccount(customerid)
         else:
-            print(f"Command {command[0]} is not valid.")
+            print("Command {command[0]} is not valid.")
 
 
 def main():
@@ -41,3 +54,4 @@ if __name__ == '__main__':
         print("Need to provide an input file! Exiting...")
         exit()
     main()
+
